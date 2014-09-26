@@ -20,5 +20,3 @@
   remote = yellow dim
 [credential]
 	helper = osxkeychain
-[push]
-	default = simple

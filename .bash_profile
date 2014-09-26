@@ -43,7 +43,7 @@ if [ $? -eq 0 ]; then \
     echo "'$GREEN'"$(__git_ps1 "(%s) "); \
   else \
     # @5 - Changes to working tree
-    echo "$(echo `git status` | grep "to update what will be committed" > /dev/null 2>&1; \
+    echo "$(echo `git status` | grep "Changes not staged for commit" > /dev/null 2>&1; \
     if [ "$?" -eq "0" ]; then \
     	echo "'$BLUE'"$(__git_ps1 "(%s) "); \
     else
