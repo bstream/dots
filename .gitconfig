@@ -1,0 +1,24 @@
+[user]
+	name = Andreas Broström
+	email = andreas.brostrom@gmail.com
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
+[core]
+	editor = nano
+[push]
+	default = simple
+[color]
+	ui = auto
+[color "status"]
+	added = cyan
+  changed = cyan
+  untracked = blue
+[color "branch"]
+	current = green
+	local = yellow
+  remote = yellow dim
+[credential]
+	helper = osxkeychain
+[push]
+	default = simple

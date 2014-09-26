@@ -1,4 +1,4 @@
 dots
 ====
 
-My dot-files
+My dot-files (.bash_profile etc.)
