@@ -46,7 +46,7 @@ if [ $? -eq 0 ]; then \
     	echo "'$RED'"$(__git_ps1 "(%s) "); \
     else \
     	echo "'$GREEN'"$(__git_ps1 "(%s) "); \
-    fi) '$ps1'"; \
+    fi)"; \
   else \
     # @5 - Changes to working tree
     echo "'$CYAN'"$(__git_ps1 "(%s) "); \
