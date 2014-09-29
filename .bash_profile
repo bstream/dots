@@ -7,11 +7,12 @@ export MSF_DATABASE_CONFIG=/opt/msf/database.yml
 export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
 
 # Some colors
-DARKRED="\[\e[0;31m\]"
+RED="\[\e[0;91m\]"
 YELLOW="\[\e[0;93m\]"
-GREEN="\[\e[0;32m\]"
-BLUE="\[\e[0;34m\]"
+GREEN="\[\e[0;92m\]"
+PURPLE="\[\e[0;34m\]"
 CYAN="\[\e[0;36m\]"
+GREY="\]\e[0;90m\]"
 PLAIN="\[\e[m\]"
 
 # Ruby magic
@@ -43,12 +44,7 @@ if [ $? -eq 0 ]; then \
     echo "'$GREEN'"$(__git_ps1 "(%s) "); \
   else \
     # @5 - Changes to working tree
-    echo "$(echo `git status` | grep "Changes not staged for commit" > /dev/null 2>&1; \
-    if [ "$?" -eq "0" ]; then \
-    	echo "'$BLUE'"$(__git_ps1 "(%s) "); \
-    else
-    	echo "'$CYAN'"$(__git_ps1 "(%s) "); \
-    fi)";
+    echo "'$CYAN'"$(__git_ps1 "(%s) "); \
   fi) '$ps1'"; \
 else \
   # @2 - Prompt when not in GIT repo
