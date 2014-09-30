@@ -18,15 +18,17 @@ PLAIN="\[\e[m\]"
 # Ruby magic
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# Git magic
-if [ -f ~/.git-prompt.sh ]; then
-	source ~/.git-prompt.sh
-fi
-
 # Aliases
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
+
+# Git magic
+if [ -f ~/.git-prompt.sh ]; then
+	source ~/.git-prompt.sh
+fi
+# Autocomplete for 'g' as well
+complete -o default -o nospace -F _git g
 
 # Bash completions
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
