@@ -51,7 +51,12 @@ if [ $? -eq 0 ]; then \
     fi)"; \
   else \
     # @5 - Changes to working tree
-    echo "'$CYAN'"$(__git_ps1 "(%s) "); \
+    echo "$(echo `git status` | grep "Changes not staged for commit" > /dev/null 2>&1; \
+    if [ "$?" -eq "0" ]; then \
+    	echo "'$CYAN'"$(__git_ps1 "(%s*) "); \
+    else \
+    	echo "'$CYAN'"$(__git_ps1 "(%s) "); \
+    fi)"; \
   fi) '$ps1'"; \
 else \
   # @2 - Prompt when not in GIT repo
@@ -78,3 +83,8 @@ function upgrade() {
 	wait
 }
 
+function update_serverip() {
+	SERVERIP="`dig @candy.ns.cloudflare.com ports.andreasbrostrom.se A | grep ports.andreasbrostrom.se | grep 'A'  | grep -v ';' | awk '{ print $5 }'`"
+	unalias serverssh
+	alias serverssh="ssh -X -p 9090 andreas@"$SERVERIP
+}

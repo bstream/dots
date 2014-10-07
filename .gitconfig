@@ -5,7 +5,7 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
-	editor = nano
+	editor = subl -n -w
 [push]
 	default = simple
 [color]

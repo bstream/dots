@@ -12,6 +12,7 @@ alias gco="git checkout"
 alias gup="git pull"
 alias gad="git add"
 alias gph="git push"
+alias gcl="git clone"
 
 # ???
 alias yolo="git pull && git add . && curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - && git push" 
