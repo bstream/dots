@@ -94,3 +94,9 @@ function prompt() {
 }
 # This command gets executed before loading PS1 (and now it sets up PS1 :) )
 PROMPT_COMMAND="prompt"
+
+function sync_fork() {
+	git fetch upstream
+	git checkout master
+	git merge upstream/master
+}
