@@ -18,8 +18,10 @@ alias gcl="git clone"
 alias yolo="git pull && git add . && curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - && git push" 
 
 # SSH stuff
-SERVERIP="`dig @candy.ns.cloudflare.com ports.andreasbrostrom.se A | grep ports.andreasbrostrom.se | grep 'A'  | grep -v ';' | awk '{ print $5 }'`"
-alias serverssh="ssh -X -p 9090 andreas@"$SERVERIP
+function serverssh() {
+	local SERVERIP="`dig @candy.ns.cloudflare.com ports.andreasbrostrom.se A | grep ports.andreasbrostrom.se | grep 'A'  | grep -v ';' | awk '{ print $5 }'`"
+	ssh -X -p 9090 andreas@$SERVERIP
+}
 alias kthssh="ssh -X abros@u-shell.csc.kth.se"
 
 # Postgres thingies
