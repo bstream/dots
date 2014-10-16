@@ -1,5 +1,5 @@
 ## declare an array variable
-declare -a files=(".bash_aliases" ".bash_profile" ".git-prompt.sh")
+declare -a files=(".bash_aliases" ".bash_profile" ".git-prompt.sh" ".gitconfig")
 
 ## now loop through the above array
 for file in "${files[@]}"
