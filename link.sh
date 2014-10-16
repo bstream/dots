@@ -4,6 +4,6 @@ declare -a files=(".bash_aliases" ".bash_profile" ".git-prompt.sh" ".gitconfig")
 ## now loop through the above array
 for file in "${files[@]}"
 do
-   ln -s "$file" "$HOME/$file"
+   ln -s "$PWD/$file" "$HOME/$file"
    # or do whatever with individual element of the array
 done
