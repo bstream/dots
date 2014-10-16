@@ -13,6 +13,7 @@ alias gup="git pull"
 alias gad="git add"
 alias gph="git push"
 alias gcl="git clone"
+alias glog="git log --oneline --abbrev-commit --all --graph --decorate --color"
 
 # ???
 alias yolo="git pull && git add . && curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - && git push" 
