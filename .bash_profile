@@ -29,7 +29,6 @@ fi
 # Check for upgrades and updates
 function upgrade() {
 	brew update & 
-	brew upgrade brew-cask &
 	sudo softwareupdate -i -a;
 	wait
 	local OUTDATED=$(brew outdated)
