@@ -97,6 +97,6 @@ PROMPT_COMMAND="prompt"
 
 function sync_fork() {
 	git fetch upstream
-	git checkout master
+	git checkout gh-pages
 	git merge upstream/master
 }
