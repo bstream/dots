@@ -19,11 +19,10 @@ alias glog="git log --oneline --abbrev-commit --all --graph --decorate --color"
 alias yolo="git pull && git add . && curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - && git push" 
 
 # SSH stuff
-function serverssh() {
-	local SERVERIP="`dig @candy.ns.cloudflare.com ports.andreasbrostrom.se A | grep ports.andreasbrostrom.se | grep 'A'  | grep -v ';' | awk '{ print $5 }'`"
-	ssh -X -p 9090 andreas@$SERVERIP
-}
-alias kthssh="ssh -X abros@u-shell.csc.kth.se"
+alias serverssh="ssh -p 9090 andreas@ports.andreasbrostrom.se"
+alias serversshx="ssh -X -p 9090 andreas@ports.andreasbrostrom.se"
+alias kthssh="ssh abros@u-shell.csc.kth.se"
+alias kthsshx="ssh -X abros@u-shell.csc.kth.se"
 
 # Postgres thingies
 alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'

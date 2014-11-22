@@ -6,8 +6,36 @@ export LANGUAGE=en_US.UTF-8
 export MSF_DATABASE_CONFIG=/opt/msf/database.yml
 export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database.yml
 
-# Ruby magic
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+if [[ $(uname -s) == "Darwin" ]]; then
+	# I am in OS X :)
+
+	# Ruby magic
+	if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+	# Bash completions
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+		. $(brew --prefix)/etc/bash_completion
+	fi
+
+	# Check for upgrades and updates
+	function upgrade() {
+		brew update & 
+		sudo softwareupdate -i -a;
+		wait
+		local OUTDATED=$(brew outdated)
+		brew upgrade
+		brew cleanup -s
+		brew cask cleanup
+		brew doctor
+		if echo "$OUTDATED" | grep -q "python[^3]"; then
+			pip install --upgrade setuptools && pip install --upgrade pip &
+		fi
+		if echo "$OUTDATED" | grep -q "python3"; then
+			pip3 install --upgrade pip &
+		fi
+		wait
+	}
+fi
 
 # Aliases
 if [ -f ~/.bash_aliases ]; then
@@ -20,36 +48,6 @@ if [ -f ~/.git-prompt.sh ]; then
 fi
 # Autocomplete for 'g' as well
 complete -o default -o nospace -F _git g
-
-# Bash completions
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
-	. $(brew --prefix)/etc/bash_completion
-fi
-
-# Check for upgrades and updates
-function upgrade() {
-	brew update & 
-	sudo softwareupdate -i -a;
-	wait
-	local OUTDATED=$(brew outdated)
-	brew upgrade
-	brew cleanup -s
-	brew cask cleanup
-	brew doctor
-	if echo "$OUTDATED" | grep -q "python[^3]"; then
-		pip install --upgrade setuptools && pip install --upgrade pip &
-	fi
-	if echo "$OUTDATED" | grep -q "python3"; then
-		pip3 install --upgrade pip &
-	fi
-	wait
-}
-
-function update_serverip() {
-	SERVERIP="`dig @candy.ns.cloudflare.com ports.andreasbrostrom.se A | grep ports.andreasbrostrom.se | grep 'A'  | grep -v ';' | awk '{ print $5 }'`"
-	unalias serverssh
-	alias serverssh="ssh -X -p 9090 andreas@"$SERVERIP
-}
 
 function prompt() {
 	# Some colors
