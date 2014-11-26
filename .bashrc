@@ -58,7 +58,7 @@ function prompt() {
 	local PLAIN="\[\e[m\]"
 
 	# Build PS1
-	local ps1="$PLAIN$YELLOW\u$PLAIN in $YELLOW\W$PLAIN\n\$ "
+	local ps1="$PLAIN$YELLOW\u$PLAIN in KTH: $YELLOW\W$PLAIN\n\$ "
 
 	git branch &>/dev/null
 	if [ $? -eq 0 ]; then
