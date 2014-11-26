@@ -3,6 +3,7 @@ alias ls="ls -GFh"
 alias ll="ls -la"
 alias st="open -a 'Sublime Text'"
 alias remake="make clean && make"
+alias eject_disk1="osascript ~/Documents/eject_disk1.scpt"
 
 # Git aliases
 alias g="git"
