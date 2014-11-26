@@ -6,7 +6,7 @@ for file in "${files[@]}"
 do
 	if [[ -e "$HOME/$file" ]]
 	then
-		if [[ -e "$HOME/$file.old" ]]
+		if [[ -e "$HOME/$file.old"]]
 		then
 			echo "$HOME/$file.old already exists, won't replace it"
 		else
