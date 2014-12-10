@@ -4,6 +4,7 @@ alias ll="ls -la"
 alias l.="ls -d .*"
 alias f="open -a 'Finder'"
 alias s="subl"
+alias c="clear"
 alias remake="make clean && make"
 alias eject_disk1="osascript ~/Documents/eject_disk1.scpt"
 
