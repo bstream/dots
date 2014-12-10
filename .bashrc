@@ -45,9 +45,9 @@ fi
 # Git magic
 if [ -f ~/.git-prompt.sh ]; then
 	source ~/.git-prompt.sh
+	# Autocomplete for 'g' as well
+	complete -o default -o nospace -F _git g
 fi
-# Autocomplete for 'g' as well
-complete -o default -o nospace -F _git g
 
 function prompt() {
 	# Some colors

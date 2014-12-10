@@ -1,7 +1,9 @@
 ## Aliases
 alias ls="ls -GFh"
 alias ll="ls -la"
-alias st="open -a 'Sublime Text'"
+alias l.="s -d .*"
+alias f="open -a 'Finder'"
+alias s="subl"
 alias remake="make clean && make"
 alias eject_disk1="osascript ~/Documents/eject_disk1.scpt"
 
