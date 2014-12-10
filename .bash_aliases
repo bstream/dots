@@ -1,7 +1,7 @@
 ## Aliases
 alias ls="ls -GFh"
 alias ll="ls -la"
-alias l.="s -d .*"
+alias l.="ls -d .*"
 alias f="open -a 'Finder'"
 alias s="subl"
 alias remake="make clean && make"
