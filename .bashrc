@@ -9,6 +9,11 @@ export MSF_DATABASE_CONFIG=/usr/local/share/metasploit-framework/config/database
 if [[ $(uname -s) == "Darwin" ]]; then
 	# I am in OS X :)
 
+	# Aliases that only work on OS X
+	alias eject_mbp="echo \"Ejecting extra disk: START\"; osascript -e 'quit app \"Dropbox\"'; diskutil eject disk5; diskutil eject disk4; diskutil eject disk3; diskutil eject disk2; diskutil eject disk1; echo \"Ejecting extra disk: DONE\"";
+	alias f="open -a 'Finder'";
+	alias s="subl";
+
 	# Ruby magic
 	if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
