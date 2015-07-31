@@ -8,15 +8,12 @@
 	editor = subl -n -w
 [push]
 	default = simple
+	followTags = true
 [color]
 	ui = auto
-[color "status"]
-	added = cyan
-  changed = cyan
-  untracked = blue
-[color "branch"]
-	current = green
-	local = yellow
-  remote = yellow dim
+	status = auto
+	branch = auto
+[color "diff"]
+	new = blue
 [credential]
 	helper = osxkeychain

@@ -1,5 +1,5 @@
 # Exports
-export PATH=$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/Users/abros/Documents/javacc-6.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/Cellar/ruby193/1.9.3-p547_1/lib/ruby/gems
+export PATH=$PATH:$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:/usr/local/share/npm/bin:/Users/abros/Documents/javacc-6.0/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/Cellar/ruby193/1.9.3-p547_1/lib/ruby/gems
 export NODE_PATH=/usr/local/lib/node:/usr/local/share/npm/lib/node_modules
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -22,6 +22,8 @@ if [[ $(uname -s) == "Darwin" ]]; then
 		. $(brew --prefix)/etc/bash_completion
 	fi
 
+	[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm";
+
 	# Check for upgrades and updates
 	function upgrade() {
 		brew update & 
@@ -30,7 +32,6 @@ if [[ $(uname -s) == "Darwin" ]]; then
 		local OUTDATED=$(brew outdated)
 		brew upgrade
 		brew cleanup -s
-		brew cask cleanup
 		brew doctor
 		if echo "$OUTDATED" | grep -q "python[^3]"; then
 			pip install --upgrade setuptools && pip install --upgrade pip &
@@ -44,7 +45,7 @@ fi
 
 # Aliases
 if [ -f ~/.bash_aliases ]; then
-		. ~/.bash_aliases
+	. ~/.bash_aliases
 fi
 
 # Git magic
@@ -97,6 +98,10 @@ function prompt() {
 }
 # This command gets executed before loading PS1 (and now it sets up PS1 :) )
 PROMPT_COMMAND="prompt"
+
+function record_session() { # Use `exit` or Ctrl+C to stop recording after it has started
+	test "$(ps -ocommand= -p $PPID | awk '{print $1}')" == 'script' || (script -q $HOME/log/script.$(date -u +%Y%m%dt%H%M%S).${HOSTNAME:-$(hostname)}.$$.${RANDOM}.log)
+}
 
 function sync_fork() {
 	git fetch upstream

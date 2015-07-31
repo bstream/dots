@@ -24,7 +24,3 @@ alias serverssh="ssh -p 9090 andreas@ports.andreasbrostrom.se"
 alias serversshx="ssh -X -p 9090 andreas@ports.andreasbrostrom.se"
 alias kthssh="ssh abros@u-shell.csc.kth.se"
 alias kthsshx="ssh -X abros@u-shell.csc.kth.se"
-
-# Postgres thingies
-alias pg_start='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start'
-alias pg_stop='pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log stop'
