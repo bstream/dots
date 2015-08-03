@@ -18,7 +18,7 @@ done
 tools="git fish wget nmap bash-completion"
 langs="python python3 ruby node"
 gems="bundler"
-npmPkgs="eslint csslint bower jsdoc"
+# npmPkgs="eslint csslint bower jsdoc"
 
 # Is this running Mac OS X?
 if [ "$(uname)" = "Darwin" ]; then
@@ -49,7 +49,7 @@ npm install --global npm@latest
 npm link npm
 
 # Install all secondary packages
-npm install --global $npmPkgs
+# npm install --global $npmPkgs
 gem install --no-document --local *.gem
 
 # Clean up temporary files
