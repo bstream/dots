@@ -36,7 +36,7 @@ function fish_prompt --description "Write out the prompt"
       set _prompt_cwd ""(set_color $fish_color_cwd)"$_prompt_cwd"
   end
   set _prompt_cwd "$_prompt_cwd"(set_color normal)
-  set _userc (set_color yellow)$USER(set_color normal)
+  set _userc (set_color EE0)$USER(set_color normal)
 
   printf '%s[%s%s]%s%s ' $_userc $_prompt_status $_prompt_job $_prompt_cwd $_prompt_end
 end
