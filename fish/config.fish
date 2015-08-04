@@ -1,5 +1,5 @@
 ### PATH ###
-set default_path /usr/bin /usr/sbin /bin /sbin /usr/local/bin
+set default_path /usr/bin /usr/sbin /bin /sbin /usr/local/bin ~/bin
 set homebrew /usr/local/bin /usr/local/sbin
 set -g -x PATH $homebrew $default_path $PATH
 
@@ -17,6 +17,8 @@ alias l.="ls -d .*"
 alias c="clear"
 alias remake="make clean; make"
 alias finder="open -a 'Finder'";
+alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
+alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 
 # GIT ALIASES
 alias g="git"
@@ -39,5 +41,9 @@ alias kthsshx="ssh -X abros@u-shell.csc.kth.se"
 # EXTRA DISK
 alias eject_mbp="echo \"Ejecting extra disk: START\"; osascript -e 'quit app \"Dropbox\"'; diskutil eject disk5; diskutil eject disk4; diskutil eject disk3; diskutil eject disk2; diskutil eject disk1; echo \"Ejecting extra disk: DONE\"";
 
-### CHANGE LS COLORS
+### CHANGE LS COLORS ###
 set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
+
+### MAKE SUBLIME ACCESIBLE VIA COMMAND LINE ###
+mkdir ~/bin; ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
+set -g EDITOR "subl -w"
