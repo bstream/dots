@@ -38,6 +38,8 @@ if [ "$(uname)" = "Darwin" ]; then
     brew info "$p" | grep -q "Not installed" && brew install "$p"
   done
 
+  # Add global gitignore to config file
+  git config --global core.excludesfile ~/.gitignore_global
 
   if which -s fish; then
     fish_location="$(which fish)"
