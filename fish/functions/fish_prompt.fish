@@ -7,7 +7,7 @@ function fish_prompt --description "Write out the prompt"
 
   switch $_prompt_status
     case 0
-      set _prompt_status ""(set_color blue)"$_prompt_status"(set_color normal)
+      set _prompt_status ""(set_color "555")"$_prompt_status"(set_color normal)
     case '*'
       set _prompt_status ""(set_color red)"$_prompt_status"(set_color normal)
   end
@@ -16,7 +16,7 @@ function fish_prompt --description "Write out the prompt"
     case 0
       set _prompt_job ""
     case '*'
-      set _prompt_job "|"(set_color --bold blue)"$_prompt_job"(set_color normal)
+      set _prompt_job "|"(set_color --bold "555")"$_prompt_job"(set_color normal)
   end
 
   switch (pwd)
