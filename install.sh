@@ -37,6 +37,25 @@ if [ "$(uname)" = "Darwin" ]; then
   for p in $tools $langs; do
     brew info "$p" | grep -q "Not installed" && brew install "$p"
   done
+
+
+  if which -s fish; then
+    fish_location="$(which fish)"
+    
+    if ! grep "$fish_location" /etc/shells; then
+      echo "Enter your pwassword to add fish to '/etc/shells'"
+      echo "$fish_location" | sudo tee -a /etc/shells
+    fi
+
+    while true; do 
+      read -r -p "Do you wish to make 'fish' your default shell? (y/n) " yn
+      case $yn in
+        y ) chsh -s "$fish_location"; break;;
+        n ) echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'"; break;;
+        * ) echo "Please answer y or n.";;
+      esac
+    done
+  fi
 fi
 
 # Prepare to install secondary packages
