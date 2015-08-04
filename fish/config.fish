@@ -38,3 +38,6 @@ alias kthsshx="ssh -X abros@u-shell.csc.kth.se"
 
 # EXTRA DISK
 alias eject_mbp="echo \"Ejecting extra disk: START\"; osascript -e 'quit app \"Dropbox\"'; diskutil eject disk5; diskutil eject disk4; diskutil eject disk3; diskutil eject disk2; diskutil eject disk1; echo \"Ejecting extra disk: DONE\"";
+
+### CHANGE LS COLORS
+set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
