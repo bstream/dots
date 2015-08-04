@@ -1,3 +1,6 @@
+### REMOVE ANNOYING MESSAGE ###
+set fish_greeting ""
+
 ### PATH ###
 set default_path /usr/bin /usr/sbin /bin /sbin /usr/local/bin ~/bin
 set homebrew /usr/local/bin /usr/local/sbin
