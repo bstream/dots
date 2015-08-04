@@ -6,6 +6,7 @@
 	smudge = git-media-smudge %f
 [core]
 	editor = subl -n -w
+	excludesfile = /Users/andbro/.gitignore_global
 [push]
 	default = simple
 	followTags = true
