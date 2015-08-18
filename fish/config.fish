@@ -12,19 +12,21 @@ set -g __fish_git_prompt_showstashstate "true"
 set -g __fish_git_prompt_showuntrackedfiles "true"
 set -g __fish_git_prompt_showcolorhints "true"
 set -g __fish_git_prompt_showupstream "auto"
+set __fish_git_prompt_color_branch yellow
 
 ### ALIASES ###
 alias ls="ls -GFh"
-alias ll="ls -la"
+alias ll="ls -lat"
 alias l.="ls -d .*"
 alias c="clear"
 alias remake="make clean; make"
 alias finder="open -a 'Finder'";
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias whatsmyip="curl -s http://jsonip.com | grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' -o"
+alias grep="grep --color=auto"
 
 # GIT ALIASES
-alias g="git"
 alias gcm="git commit -m"
 alias gst="git status"
 alias gco="git checkout"
@@ -35,6 +37,17 @@ alias glog="git log --oneline --abbrev-commit --all --graph --decorate --color"
 # ???
 alias yolo="git pull; git add --all; curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - ; git push" 
 
+### CHANGE LS COLORS ###
+set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
+
+### MAKE SUBLIME THE DEFAULT EDITOR ###
+set -g EDITOR "subl -w"
+
+
+
+
+### ALIASES SPECIFIC TO ANDREAS OS X
+
 # SSH ALIASES
 alias serverssh="ssh -p 9090 andreas@ports.andreasbrostrom.se"
 alias serversshx="ssh -X -p 9090 andreas@ports.andreasbrostrom.se"
@@ -43,10 +56,15 @@ alias kthsshx="ssh -X abros@u-shell.csc.kth.se"
 
 # EXTRA DISK
 alias eject_mbp="echo \"Ejecting extra disk: START\"; osascript -e 'quit app \"Dropbox\"'; diskutil eject disk5; diskutil eject disk4; diskutil eject disk3; diskutil eject disk2; diskutil eject disk1; echo \"Ejecting extra disk: DONE\"";
+# Paths to your tackle
+set tacklebox_path ~/.tackle ~/.tacklebox
 
-### CHANGE LS COLORS ###
-set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
 
-### MAKE SUBLIME ACCESIBLE VIA COMMAND LINE ###
-mkdir ~/bin; ln -s "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/subl
-set -g EDITOR "subl -w"
+### EXTRAS
+set tacklebox_plugins pip python extract
+
+# Load Tacklebox configuration
+. ~/.tacklebox/tacklebox.fish
+
+# Load fishmarks (http://github.com/techwizrd/fishmarks)
+. $HOME/.fishmarks/marks.fish

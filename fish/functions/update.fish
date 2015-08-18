@@ -37,6 +37,12 @@ function update --description 'Runs the varius upgrade commands'
   end
   wait
 
+  pushd; 
+  cd ~/.tacklebox; git pull
+  cd ~/.tackle; git pull; 
+  cd ~/.fishmarks; git fetch --all; git reset --hard origin/master;
+  popd;
+
   seq -f "-" -s "" $COLUMNS
   echo
   if test -n "$OUTDATED"

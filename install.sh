@@ -45,18 +45,25 @@ if [ "$(uname)" = "Darwin" ]; then
     fish_location="$(which fish)"
     
     if ! grep "$fish_location" /etc/shells; then
-      echo "Enter your pwassword to add fish to '/etc/shells'"
+      echo "Enter your password to add fish to '/etc/shells'"
       echo "$fish_location" | sudo tee -a /etc/shells
     fi
 
-    while true; do 
-      read -r -p "Do you wish to make 'fish' your default shell? (y/n) " yn
-      case $yn in
-        y ) chsh -s "$fish_location"; break;;
-        n ) echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'"; break;;
-        * ) echo "Please answer y or n.";;
-      esac
-    done
+    if ! [[ "$SHELL" =~ "fish" ]]; then
+      # Current shell is not fish
+      while true; do 
+        read -r -p "Do you wish to make 'fish' your default shell? (y/n) " yn
+        case $yn in
+          y ) chsh -s "$fish_location"; break;;
+          n ) echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'"; break;;
+          * ) echo "Please answer y or n.";;
+        esac
+      done
+    fi
+    # Install tacklebox and tackle
+    curl -L https://raw.githubusercontent.com/justinmayer/tacklebox/master/tools/install.fish | fish;
+    # Install fishmarks
+    curl -L https://github.com/techwizrd/fishmarks/raw/master/install.fish | fish
   fi
 fi
 
