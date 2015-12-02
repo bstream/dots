@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Symlink config files in the rc folder, e.g. .gitconfig/.bashrc etc.
@@ -55,7 +55,7 @@ if [ "$(uname)" = "Darwin" ]; then
         read -r -p "Do you wish to make 'fish' your default shell? (y/n) " answer
 
         if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]; then
-          echo "Chaning shell to fish!";
+          echo "Changing shell to fish!";
           chsh -s "$fish_location";
           break;
         fi
