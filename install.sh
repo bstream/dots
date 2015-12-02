@@ -52,12 +52,19 @@ if [ "$(uname)" = "Darwin" ]; then
     if ! [[ "$SHELL" =~ "fish" ]]; then
       # Current shell is not fish
       while true; do
-        read -r -p "Do you wish to make 'fish' your default shell? (y/n) " yn
-        case $yn in
-          y ) echo "Chaning shell to fish!"; chsh -s "$fish_location"; break;;
-          n ) echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'"; break;;
-          * ) echo "Please answer y or n.";;
-        esac
+        read -r -p "Do you wish to make 'fish' your default shell? (y/n) " answer
+
+        if [[ $answer =~ ^([yY][eE][sS]|[yY])$ ]]; then
+          echo "Chaning shell to fish!";
+          chsh -s "$fish_location";
+          break;
+        fi
+
+        if [[ $answer =~ ^([nN][oO]|[nO])$ ]]; then
+          echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'";
+          break;
+        fi
+        echo "Please answer y or n.";
       done
     fi
     # Install tacklebox and tackle
