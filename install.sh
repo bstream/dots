@@ -15,9 +15,8 @@ for f in $DIR/fish/*; do
 done
 
 # General good programs to have
-tools="git fish wget nmap bash-completion"
+tools="git fish wget"
 langs="python python3 ruby node"
-gems="bundler"
 # npmPkgs="eslint csslint bower jsdoc"
 
 # Is this running Mac OS X?
