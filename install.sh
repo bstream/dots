@@ -43,7 +43,7 @@ if [ "$(uname)" = "Darwin" ]; then
 
   if which -s fish; then
     fish_location="$(which fish)"
-    
+
     if ! grep "$fish_location" /etc/shells; then
       echo "Enter your password to add fish to '/etc/shells'"
       echo "$fish_location" | sudo tee -a /etc/shells
@@ -51,10 +51,10 @@ if [ "$(uname)" = "Darwin" ]; then
 
     if ! [[ "$SHELL" =~ "fish" ]]; then
       # Current shell is not fish
-      while true; do 
+      while true; do
         read -r -p "Do you wish to make 'fish' your default shell? (y/n) " yn
         case $yn in
-          y ) chsh -s "$fish_location"; break;;
+          y ) echo "Chaning shell to fish!"; chsh -s "$fish_location"; break;;
           n ) echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'"; break;;
           * ) echo "Please answer y or n.";;
         esac
@@ -76,11 +76,10 @@ pip install --upgrade pip
 npm install --global npm@latest
 npm link npm
 
-# Install all secondary packages
-# npm install --global $npmPkgs
-gem install --no-document --local *.gem
-
 # Clean up temporary files
 rm -rf pipCache node_modules *.gem
 
-echo "Install done"
+echo "Install done. Next steps:"
+echo "* Close all active terminal sessions and restart"
+echo "* Run 'update' and wait for it to complete. If you run in to any errors try the command again"
+echo "* Set up your git config using git config --global user.email 'your.email@domain.com' and git config --global user.name 'Your Name'"
