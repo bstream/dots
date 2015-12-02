@@ -1,12 +1,9 @@
-[user]
-	name = Andreas Broström
-	email = andreas.brostrom@gmail.com
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
 	editor = subl -n -w
-	excludesfile = /Users/andbro/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
 	followTags = true
@@ -17,9 +14,3 @@
 	diff = auto
 [credential]
 	helper = osxkeychain
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
