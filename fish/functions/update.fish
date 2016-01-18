@@ -12,17 +12,26 @@ function update --description 'Runs the varius upgrade commands'
   end
 
   if test -n "$softwareupdate"
+    echo "Updating software"
     softwareupdate -i -a &
   end
 
   if test -n "$brew"
+    echo "Updating brew"
     brew update
   end
   wait
 
   set -l OUTDATED (brew outdated)
 
+  if command -v apm >/dev/null
+    echo "Upgrading atom"
+    apm upgrade --no-confirm
+    apm clean
+  end
+
   if test -n "$OUTDATED"
+    echo "Upgrading brew"
     brew upgrade --all
     brew cleanup -s
     fish -c "fish_update_completions" &
@@ -37,9 +46,9 @@ function update --description 'Runs the varius upgrade commands'
   end
   wait
 
-  pushd; 
+  pushd;
   cd ~/.tacklebox; git pull
-  cd ~/.tackle; git pull; 
+  cd ~/.tackle; git pull
   cd ~/.fishmarks; git fetch --all; git reset --hard origin/master;
   popd;
 
