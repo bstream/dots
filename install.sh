@@ -2,14 +2,14 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Symlink config files in the rc folder, e.g. .gitconfig/.bashrc etc.
-cd ~
+cd ~ || exit
 for f in $DIR/rc/*; do
   ln -fs "$f" ".$(basename "$f")"
 done
 
 # Symlink files in the fish folder
 mkdir -p ~/.config/fish
-cd ~/.config/fish
+cd ~/.config/fish || exit
 for f in $DIR/fish/*; do
   ln -fs "$f"
 done
@@ -48,7 +48,7 @@ if [ "$(uname)" = "Darwin" ]; then
       echo "$fish_location" | sudo tee -a /etc/shells
     fi
 
-    if ! [[ "$SHELL" =~ "fish" ]]; then
+    if ! [[ "$SHELL" =~ fish ]]; then
       # Current shell is not fish
       while true; do
         read -r -p "Do you wish to make 'fish' your default shell? (y/n) " answer
@@ -74,7 +74,7 @@ if [ "$(uname)" = "Darwin" ]; then
 fi
 
 # Prepare to install secondary packages
-cd "$DIR"
+cd "$DIR" || exit
 mkdir pipCache
 
 # Upgrade package managers
