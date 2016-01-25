@@ -32,6 +32,10 @@ if [ "$(uname)" = "Darwin" ]; then
   brew fetch --deps $tools $langs &
   wait
 
+  # Install brew cask
+  brew cask &
+  wait
+
   # Install all binaries
   for p in $tools $langs; do
     brew info "$p" | grep -q "Not installed" && brew install "$p"

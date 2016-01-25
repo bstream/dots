@@ -37,6 +37,12 @@ function update --description 'Runs the varius upgrade commands'
     fish -c "fish_update_completions" &
   end
 
+  echo "Updating casks"
+  set -l CASKLIST (brew cask list)
+  for cask in CASKLIST
+    brew cask install $cask
+  end
+
   switch "$OUTDATED"
     case "*python3*"
       pip3 install --upgrade pip &
