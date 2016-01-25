@@ -91,7 +91,8 @@ if ! [ "$(git config --get remote.origin.url)" = "$REPOURL" ]; then
 fi
 
 # Add update of dots repo to 'update.fish'
-sed -i '.bak' "6s,.*,  git -C $DIR pull," fish/functions/update.fish && mv fish/functions/update.fish.bak fish/functions/update.fish
+echo "Editing update.fish"
+sed -i '.bak' "6s,.*,  git -C $DIR pull," fish/functions/update.fish
 
 mkdir pipCache
 
