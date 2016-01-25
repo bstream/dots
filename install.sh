@@ -1,4 +1,6 @@
 #!/bin/bash
+REPOURL="https://github.com/bstream/dots.git"
+
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Symlink config files in the rc folder, e.g. .gitconfig/.bashrc etc.
@@ -17,7 +19,6 @@ done
 # General good programs to have
 tools="git fish wget"
 langs="python python3 ruby node"
-# npmPkgs="eslint csslint bower jsdoc"
 
 # Is this running Mac OS X?
 if [ "$(uname)" = "Darwin" ]; then
@@ -63,7 +64,7 @@ if [ "$(uname)" = "Darwin" ]; then
           break;
         fi
 
-        if [[ $answer =~ ^([nN][oO]|[nO])$ ]]; then
+        if [[ $answer =~ ^([nN][oO]|[nN])$ ]]; then
           echo "Will NOT make 'fish' your default shell. This can be changed later by running 'chsh -s $fish_location'";
           break;
         fi
@@ -79,6 +80,16 @@ fi
 
 # Prepare to install secondary packages
 cd "$DIR" || exit
+
+# Set up this folder as a git repo if it isn't already
+if ! [ "$(git config --get remote.origin.url)" = "$REPOURL" ]; then
+  git init
+  git remote add origin $REPOURL
+  git fetch --all
+  git reset --hard origin/master
+  git branch --set-upstream-to=origin/master master
+fi
+
 mkdir pipCache
 
 # Upgrade package managers
