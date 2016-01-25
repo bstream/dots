@@ -2,6 +2,9 @@ function update --description 'Runs the varius upgrade commands'
   set -l brew true
   set -l softwareupdate
 
+  echo "Updating dots"
+  # NOTE: Do not edit this line, or any of the lines above it
+
   for arg in $argv
     switch $arg
       case '--no-brew'
