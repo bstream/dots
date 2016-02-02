@@ -1,5 +1,6 @@
 #!/bin/bash
-REPOURL="https://github.com/bstream/dots.git"
+REPOURLHTTPS="https://github.com/bstream/dots.git"
+REPOURLGIT="git@github.com:bstream/dots.git"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
@@ -82,17 +83,24 @@ fi
 cd "$DIR" || exit
 
 # Set up this folder as a git repo if it isn't already
-if ! [ "$(git config --get remote.origin.url)" = "$REPOURL" ]; then
+echo -n "Checking if this is a git repo"
+remoteUrl="$(git config --get remote.origin.url)"
+if [ "$remoteUrl" != "$REPOURLHTTPS" ] && [ "$remoteUrl" != "$REPOURLGIT" ]; then
+  echo ""
+  echo "Linking installation directory to git"
   git init
-  git remote add origin $REPOURL
+  git remote add origin $REPOURLHTTPS
   git fetch --all
   git reset --hard origin/master
   git branch --set-upstream-to=origin/master master
+else
+  echo " - √"
 fi
 
 # Add update of dots repo to 'update.fish'
-echo "Editing update.fish"
+echo -n "Editing update.fish"
 sed -i '.bak' "6s,.*,  git -C $DIR pull," fish/functions/update.fish
+echo " - √"
 
 mkdir pipCache
 
@@ -104,7 +112,7 @@ npm link npm
 # Clean up temporary files
 rm -rf pipCache node_modules *.gem
 
-echo "Install done. Next steps:"
+echo "Install done √. Next steps:"
 echo "* Close all active terminal sessions and restart"
 echo "* Run 'update' and wait for it to complete. If you run in to any errors try the command again"
 echo "* Set up your git config using git config --global user.email 'your.email@domain.com' and git config --global user.name 'Your Name'"
