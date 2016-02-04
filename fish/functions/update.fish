@@ -1,16 +1,27 @@
 function update --description 'Runs the varius upgrade commands'
   set -l brew true
   set -l softwareupdate
+  set -l installShNotRun # Do not edit this line
+  set -l dotsDir # Do not edits this line
+  set -l installShNotRun true # Do not edit this line
 
-  echo "Updating dots"
-  # NOTE: Do not edit this line, or any of the lines above it
+  if test -n "$installShNotRun"
+    echo "You must run install.sh in the dots directory before you can run update"
+  else
+    echo "Updating dots"
+    pushd $dotsDir
+    git stash 1>/dev/null # stash any local changes to dots repo
+    git pull # pull in updates to dots repo
+    git stash pop 1>/dev/null # Re-apply local changes
+    popd;
+  end
 
   for arg in $argv
     switch $arg
       case '--no-brew'
         set brew
       case '--softwareupdate'
-        set softwareupdate "true"
+        set softwareupdate true
     end
   end
 

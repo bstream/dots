@@ -20,6 +20,7 @@ done
 # General good programs to have
 tools="git fish wget"
 langs="python python3 ruby node"
+npmPkgs="n"
 
 # Is this running Mac OS X?
 if [ "$(uname)" = "Darwin" ]; then
@@ -99,7 +100,7 @@ fi
 
 # Add update of dots repo to 'update.fish'
 echo -n "Editing update.fish"
-sed -i '.bak' "6s,.*,  git -C $DIR pull," fish/functions/update.fish
+sed -i '' "6s,.*,  set -l dotsDir $DIR," fish/functions/update.fish
 echo " - √"
 
 mkdir pipCache
@@ -108,6 +109,13 @@ mkdir pipCache
 pip install --upgrade pip
 npm install --global npm@latest
 npm link npm
+
+# Install secondary packages
+npm install --global $npmPkgs
+
+if npm list --depth 1 --global n > /dev/null 2>&1; then
+  n lts # Use node + npm long term support
+fi
 
 # Clean up temporary files
 rm -rf pipCache node_modules *.gem
