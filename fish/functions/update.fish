@@ -3,9 +3,11 @@ function update --description 'Runs the varius upgrade commands'
   set -l softwareupdate
   set -l installShNotRun # Do not edit this line
   set -l installShNotRun true # Do not edit this line
+  set -l useLatestLTSNode # Set this to true if you want the latest LTS of node
 
   if test -n "$installShNotRun"
     echo "You must run install.sh in the dots directory before you can run update"
+    return 1
   else
     echo "Updating dots"
     pushd $dotsDir
@@ -21,6 +23,8 @@ function update --description 'Runs the varius upgrade commands'
         set brew
       case '--softwareupdate'
         set softwareupdate true
+      case '--node-lts'
+        set useLatestLTSNode true
     end
   end
 
@@ -66,6 +70,17 @@ function update --description 'Runs the varius upgrade commands'
       and pip install --upgrade pip
   end
   wait
+
+  # If 'n' is installed and if the installed version of node is not the latest lts
+  if test -n "$useLatestLTSNode"; and npm list --depth 1 --global n > /dev/null 2>&1
+    echo -n "Checking if you have the latest LTS version of node"
+    if node -v | grep (n --lts) > /dev/null 2>&1
+      echo " - √ (you do)"
+    else
+      echo ""
+      n lts
+    end
+  end
 
   pushd;
   cd ~/.tacklebox; git pull
