@@ -100,7 +100,7 @@ fi
 
 # Add update of dots repo to 'update.fish'
 echo -n "Editing update.fish"
-sed -i '' "6s,.*,  set -l dotsDir $DIR," fish/functions/update.fish
+sed -i '' "5s,.*,  set -l dotsDir $DIR," fish/functions/update.fish
 echo " - √"
 
 mkdir pipCache

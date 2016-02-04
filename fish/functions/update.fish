@@ -2,7 +2,6 @@ function update --description 'Runs the varius upgrade commands'
   set -l brew true
   set -l softwareupdate
   set -l installShNotRun # Do not edit this line
-  set -l dotsDir # Do not edits this line
   set -l installShNotRun true # Do not edit this line
 
   if test -n "$installShNotRun"
