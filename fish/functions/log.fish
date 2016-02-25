@@ -1,13 +1,13 @@
 function log -d "Logs a string to stdout"
-  set color cyan
+  set color $fish_color_comment
   set message ""
 
 for arg in $argv
   switch $arg
     case '--error'
-      set color red
+      set color $fish_color_error
     case '--warning'
-      set color yellow
+      set color $fish_color_param
     case '*'
       set message "$message $arg"
   end
