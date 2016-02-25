@@ -6,10 +6,10 @@ function update --description 'Runs the varius upgrade commands'
   set -l useLatestLTSNode # Set this to true if you want the latest LTS of node
 
   if test -n "$installShNotRun"
-    echo "You must run install.sh in the dots directory before you can run update"
+    log --error "You must run install.sh in the dots directory before you can run update"
     return 1
   else
-    echo "Updating dots"
+    log "Updating dots"
     pushd $dotsDir
     git stash 1>/dev/null # stash any local changes to dots repo
     git pull # pull in updates to dots repo
@@ -29,12 +29,12 @@ function update --description 'Runs the varius upgrade commands'
   end
 
   if test -n "$softwareupdate"
-    echo "Updating software"
+    log "Updating software"
     softwareupdate -i -a &
   end
 
   if test -n "$brew"
-    echo "Updating brew"
+    log "Updating brew"
     brew update
   end
   wait
@@ -42,19 +42,19 @@ function update --description 'Runs the varius upgrade commands'
   set -l OUTDATED (brew outdated)
 
   if command -v apm >/dev/null
-    echo "Upgrading atom"
+    log "Upgrading atom"
     apm upgrade --no-confirm
     apm clean
   end
 
   if test -n "$OUTDATED"
-    echo "Upgrading brew"
+    log "Upgrading brew"
     brew upgrade --all
     brew cleanup -s
     fish -c "fish_update_completions" &
   end
 
-  echo "Updating casks"
+  log "Updating casks"
   # Workaround to update casks
   # Silenced error messages when brew cask installing
   set -l CASKLIST (brew cask list 2>/dev/null)
@@ -73,11 +73,9 @@ function update --description 'Runs the varius upgrade commands'
 
   # If 'n' is installed and if the installed version of node is not the latest lts
   if test -n "$useLatestLTSNode"; and npm list --depth 1 --global n > /dev/null 2>&1
-    echo -n "Checking if you have the latest LTS version of node"
     if node -v | grep (n --lts) > /dev/null 2>&1
-      echo " - √ (you do)"
+      log "You already have the latest LTS version of node"
     else
-      echo ""
       n lts
     end
   end
@@ -99,10 +97,10 @@ function update --description 'Runs the varius upgrade commands'
         echo Restarted $pkg
       end
     end
-    echo (set_color --bold yellow)"Upgraded formulae"(set_color normal)
-    echo $OUTDATED
+    log "Upgraded formulae"
+    log $OUTDATED
   else
-    echo (set_color --bold yellow)"No formulae to upgrade"(set_color normal)
+    log "No formulae to upgrade"
   end
 
   return 0
