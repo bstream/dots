@@ -19,7 +19,7 @@ done
 
 # General good programs to have
 tools="git fish wget"
-langs="python python3 ruby node"
+langs="python python3 ruby node" # node is needed to get npm
 npmPkgs="n"
 
 # Is this running Mac OS X?
