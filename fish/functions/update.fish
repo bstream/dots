@@ -98,7 +98,7 @@ function update --description 'Runs the varius upgrade commands'
       end
     end
     log "Upgraded formulae"
-    log $OUTDATED
+    log --info $OUTDATED
   else
     log "No formulae to upgrade"
   end

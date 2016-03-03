@@ -8,6 +8,8 @@ for arg in $argv
       set color $fish_color_error
     case '--warning'
       set color $fish_color_param
+    case '--info'
+      set color $fish_color_quote
     case '*'
       set message "$message $arg"
   end
