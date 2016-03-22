@@ -58,7 +58,7 @@ function update --description 'Runs the varius upgrade commands'
   # Workaround to update casks
   # Silenced error messages when brew cask installing
   set -l CASKLIST (brew cask list 2>/dev/null)
-  for cask in CASKLIST
+  for cask in $CASKLIST
     brew cask install $cask 2>/dev/null
   end
 
