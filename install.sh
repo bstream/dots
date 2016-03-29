@@ -18,9 +18,9 @@ for f in $DIR/fish/*; do
 done
 
 # General good programs to have
-tools="git fish wget"
-langs="python python3 ruby node" # node is needed to get npm
-npmPkgs="n"
+tools="git fish wget n"
+langs="python python3 ruby"
+#npmPkgs=""
 
 # Is this running Mac OS X?
 if [ "$(uname)" = "Darwin" ]; then
@@ -43,6 +43,8 @@ if [ "$(uname)" = "Darwin" ]; then
   for p in $tools $langs; do
     brew info "$p" | grep -q "Not installed" && brew install "$p"
   done
+
+  n lts # Use node + npm long term support
 
   # Add global gitignore to config file
   git config --global core.excludesfile ~/.gitignore_global
@@ -107,15 +109,11 @@ mkdir pipCache
 
 # Upgrade package managers
 pip install --upgrade pip
-npm install --global npm@latest
-npm link npm
+#npm install --global npm@latest
+#npm link npm
 
 # Install secondary packages
-npm install --global $npmPkgs
-
-if npm list --depth 1 --global n > /dev/null 2>&1; then
-  n lts # Use node + npm long term support
-fi
+#npm install --global $npmPkgs
 
 # Clean up temporary files
 rm -rf pipCache node_modules *.gem
