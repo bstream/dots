@@ -13,6 +13,12 @@ set -g __fish_git_prompt_showuntrackedfiles "true"
 set -g __fish_git_prompt_showcolorhints "true"
 set -g __fish_git_prompt_showupstream "auto"
 set __fish_git_prompt_color_branch yellow
+set __fish_git_prompt_char_dirtystate '✨ '
+set __fish_git_prompt_char_stagedstate '→'
+set __fish_git_prompt_char_stashstate '📦 '
+set __fish_git_prompt_char_upstream_ahead '↑'
+set __fish_git_prompt_char_upstream_behind '↓'
+set __fish_git_prompt_char_untrackedfiles '🆕 '
 
 ### ALIASES ###
 alias ls="ls -GFh"
