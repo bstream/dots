@@ -21,8 +21,8 @@ set -g __fish_git_prompt_char_dirtystate '✨ '
 set -g __fish_git_prompt_char_stagedstate '→'
 set -g __fish_git_prompt_char_stashstate '📦 '
 set -g __fish_git_prompt_char_untrackedfiles '🆕 '
-set -g __fish_git_prompt_char_conflictedstate "✖"
-set -g __fish_git_prompt_char_cleanstate "✔"
+set -g __fish_git_prompt_char_conflictedstate '✖'
+set -g __fish_git_prompt_char_cleanstate '✔'
 
 set -g __fish_git_prompt_color_invalidstate red
 
@@ -47,7 +47,7 @@ alias gph="git push"
 alias glog="git log --oneline --abbrev-commit --all --graph --decorate --color"
 
 # ???
-alias yolo="git pull; git add --all; curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - ; git push" 
+alias yolo="git pull; git add --all; curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - ; git push"
 
 ### CHANGE LS COLORS ###
 set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
