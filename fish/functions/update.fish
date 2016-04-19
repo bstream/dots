@@ -50,7 +50,6 @@ function update --description 'Runs the varius upgrade commands'
   if test -n "$OUTDATED"
     log "Upgrading brew"
     brew upgrade --all
-    brew cleanup -s
     fish -c "fish_update_completions" &
   end
 
@@ -60,6 +59,14 @@ function update --description 'Runs the varius upgrade commands'
   set -l CASKLIST (brew cask list 2>/dev/null)
   for cask in $CASKLIST
     brew cask install $cask 2>/dev/null
+  end
+  wait
+
+  log "Cleaning up"
+  if test -n "$OUTDATED"
+    brew prune
+    brew cleanup -sf
+    brew cask cleanup
   end
 
   switch "$OUTDATED"
