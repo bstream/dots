@@ -80,3 +80,8 @@ set tacklebox_plugins pip python extract
 
 # Load fishmarks (http://github.com/techwizrd/fishmarks)
 . $HOME/.fishmarks/marks.fish
+
+# Look for user defined overrides.
+if test -e ~/.config/fish/overrides.fish
+  . ~/.config/fish/overrides.fish
+end
