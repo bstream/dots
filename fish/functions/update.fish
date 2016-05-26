@@ -87,8 +87,7 @@ function update --description 'Runs the varius upgrade commands'
     end
   end
 
-  pushd;
-  cd ~/.tacklebox; git pull
+  pushd ~/.tacklebox; git pull
   cd ~/.tackle; git pull
   cd ~/.fishmarks; git fetch --all; git reset --hard origin/master;
   popd;
