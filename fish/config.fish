@@ -50,7 +50,7 @@ alias glog="git log --oneline --abbrev-commit --all --graph --decorate --color"
 alias yolo="git pull; git add --all; curl -s -X GET http://whatthecommit.com/index.txt | git commit --file - ; git push"
 
 ### CHANGE LS COLORS ###
-set -Ux LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
+set -g -x LSCOLORS gxfxbEaEBxxEhEhBaDaCaD
 
 ### MAKE SUBLIME THE DEFAULT EDITOR ###
 set -g EDITOR "subl -w"
