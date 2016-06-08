@@ -79,7 +79,7 @@ function update --description 'Runs the varius upgrade commands'
   wait
 
   # If 'n' is installed and if the installed version of node is not the latest lts
-  if test -n "$useLatestLTSNode"; and npm list --depth 1 --global n > /dev/null 2>&1
+  if test -n "$useLatestLTSNode"; and hash n > /dev/null 2>&1
     if node -v | grep (n --lts) > /dev/null 2>&1
       log "You already have the latest LTS version of node"
     else
