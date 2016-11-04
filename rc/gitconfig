@@ -2,7 +2,7 @@
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
 [core]
-	editor = subl -n -w
+	editor = atom --wait
 	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
