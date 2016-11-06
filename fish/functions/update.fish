@@ -49,7 +49,7 @@ function update --description 'Runs the varius upgrade commands'
 
   if test -n "$OUTDATED"
     log "Upgrading brew"
-    brew upgrade --all
+    brew upgrade
     fish -c "fish_update_completions" &
   end
 
