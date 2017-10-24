@@ -49,7 +49,7 @@ alias ll="ls -la"
 alias l.="ls -d .*"
 alias c="clear"
 alias remake="make clean && make"
-alias whatsmyip="curl -s http://jsonip.com | grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' -o"
+alias whatsmyip="curl -s https://jsonip.com | grep '[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}\.[0-9]\{1,3\}' -o"
 
 # Git aliases
 alias g="git"
