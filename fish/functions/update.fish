@@ -44,7 +44,6 @@ function update --description 'Runs the varius upgrade commands'
   if command -v apm >/dev/null
     log "Upgrading atom"
     apm upgrade --no-confirm
-    apm clean
   end
 
   if test -n "$OUTDATED"
