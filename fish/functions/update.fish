@@ -64,8 +64,7 @@ function update --description 'Runs the varius upgrade commands'
   log "Cleaning up"
   if test -n "$OUTDATED"
     brew prune
-    brew cleanup -sf
-    brew cask cleanup
+    brew cleanup -s
   end
 
   switch "$OUTDATED"
