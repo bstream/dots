@@ -35,7 +35,7 @@ alias remake="make clean; make"
 alias finder="open -a 'Finder'";
 alias showFiles='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hideFiles='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
-alias whatsmyip="curl -sS https://ipinfo.io/ip"
+alias whatsmyip="curl -sS https://api.ipify.org"
 alias grep="grep --color=auto"
 
 # GIT ALIASES
